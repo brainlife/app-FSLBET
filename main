@@ -10,7 +10,7 @@ fi
 export t1=$(jq -r .t1 config.json)
 export fthresh=$(jq -r .fthreshold config.json)
 
-cp $t1 .
+cp $t1 t1_orig.nii.gz
 
-bet t1.nii.gz t1_bet.nii.gz -m -f $fthresh
+bet t1_orig.nii.gz t1.nii.gz -m -f $fthresh
 
