@@ -14,3 +14,5 @@ cp $t1 t1_orig.nii.gz
 
 bet t1_orig.nii.gz t1.nii.gz -m -f $fthresh
 
+mv t1_mask.nii.gz mask.nii.gz
+
