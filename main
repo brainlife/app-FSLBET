@@ -4,7 +4,7 @@
 #PBS -V
 
 if [ $ENV == "IUHPC" ]; then
-    module load fsl
+    module load fsl/5.0.9
 fi
 
 export t2=$(jq -r .t2 config.json)
