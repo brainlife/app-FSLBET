@@ -12,8 +12,10 @@ export bvals=$(jq -r .bvals config.json)
 export fthresh=$(jq -r .fthreshold config.json)
 export gthresh=$(jq -r .gthreshold config.json)
 
+cp ${dwi} dwi_original.nii.gz;
+
 select_dwi_vols \
-    ${dwi} \
+    dwi_original.nii.gz \
     ${bvals} \
     nodif.nii.gz \
     0;
