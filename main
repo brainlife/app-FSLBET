@@ -26,10 +26,10 @@ fslmaths nodif \
 
 # Brain extraction before alignment
 bet nodif_mean.nii.gz \
-    nodif_brain \
+    dwi \
     -f $fthresh \
     -g $gthresh \
     -m;
 
-mv nodif_brain_mask.nii.gz mask.nii.gz;
+mv dwi_mask.nii.gz mask.nii.gz;
 
