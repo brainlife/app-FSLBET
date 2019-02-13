@@ -35,4 +35,5 @@ bet nodif_mean.nii.gz \
     -m;
 
 mv dwi_mask.nii.gz mask.nii.gz;
+rm -rf nodif.nii.gz nodif_mean.nii.gz dwi_original.nii.gz
 
