@@ -8,6 +8,7 @@ if [ $ENV == "IUHPC" ]; then
 fi
 
 export dwi=$(jq -r .dwi config.json)
+export bvals=$(jq -r .bvals config.json)
 export fthresh=$(jq -r .fthreshold config.json)
 export gthresh=$(jq -r .gthreshold config.json)
 
