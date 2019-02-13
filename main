@@ -9,10 +9,13 @@ fi
 
 export dwi=$(jq -r .dwi config.json)
 export bvals=$(jq -r .bvals config.json)
+export bvecs=$(jq -r .bvecs config.json)
 export fthresh=$(jq -r .fthreshold config.json)
 export gthresh=$(jq -r .gthreshold config.json)
 
 cp ${dwi} dwi_original.nii.gz;
+cp ${bvals} dwi.bvals;
+cp ${bvecs} dwi.bvecs;
 
 select_dwi_vols \
     dwi_original.nii.gz \
