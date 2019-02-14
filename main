@@ -7,6 +7,9 @@ if [ $ENV == "IUHPC" ]; then
     module load fsl
 fi
 
+mkdir mask
+mkdir dwi
+
 export dwi=$(jq -r .dwi config.json)
 export bvals=$(jq -r .bvals config.json)
 export bvecs=$(jq -r .bvecs config.json)
@@ -14,8 +17,8 @@ export fthresh=$(jq -r .fthreshold config.json)
 export gthresh=$(jq -r .gthreshold config.json)
 
 cp ${dwi} dwi_original.nii.gz;
-cp ${bvals} dwi.bvals;
-cp ${bvecs} dwi.bvecs;
+cp ${bvals} ./dwi/dwi.bvals;
+cp ${bvecs} ./dwidwi.bvecs;
 
 select_dwi_vols \
     dwi_original.nii.gz \
@@ -34,6 +37,6 @@ bet nodif_mean.nii.gz \
     -g $gthresh \
     -m;
 
-mv dwi_mask.nii.gz mask.nii.gz;
+mv dwi_mask.nii.gz ./mask/mask.nii.gz;
 rm -rf nodif.nii.gz nodif_mean.nii.gz dwi_original.nii.gz
 
