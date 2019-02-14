@@ -18,7 +18,7 @@ export gthresh=$(jq -r .gthreshold config.json)
 
 cp ${dwi} dwi_original.nii.gz;
 cp ${bvals} ./dwi/dwi.bvals;
-cp ${bvecs} ./dwidwi.bvecs;
+cp ${bvecs} ./dwi/dwi.bvecs;
 
 select_dwi_vols \
     dwi_original.nii.gz \
@@ -32,11 +32,15 @@ fslmaths nodif \
 
 # Brain extraction before alignment
 bet nodif_mean.nii.gz \
-    dwi \
+    dwi_brain \
     -f $fthresh \
     -g $gthresh \
     -m;
+    
+# multiply dwi by mask to get extracted brain
+fslmaths dwi_original.nii.gz -mul dwi_brain_mask.nii.gz ./dwi/dwi.nii.gz;
 
-mv dwi_mask.nii.gz ./mask/mask.nii.gz;
+mv dwi.nii.gz ./dwi/dwi.nii.gz;
+mv dwi_brain_mask.nii.gz ./mask/mask.nii.gz;
 rm -rf nodif.nii.gz nodif_mean.nii.gz dwi_original.nii.gz
 
