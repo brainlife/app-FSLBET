@@ -1,0 +1,4 @@
+{
+    "input": "testdata/bold.nii.gz",
+    "fthreshold": 0.4
+}
