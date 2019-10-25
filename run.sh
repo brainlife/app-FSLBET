@@ -36,3 +36,9 @@ fslmaths dwi_original.nii.gz -mul dwi_brain_mask.nii.gz ./dwi/dwi.nii.gz;
 mv dwi_brain_mask.nii.gz ./mask/mask.nii.gz;
 rm -rf nodif.nii.gz nodif_mean.nii.gz dwi_original.nii.gz dwi_brain.nii.gz
 
+if [ ! -f ./mask/mask.nii.gz ]; then
+	echo "mask missing"
+	exit 1
+else
+	echo "mask complete"
+fi
