@@ -26,6 +26,7 @@ fslmaths nodif \
 # Brain extraction before alignment
 bet nodif_mean.nii.gz \
     dwi_brain \
+    -R \
     -f $fthresh \
     -g $gthresh \
     -m;
