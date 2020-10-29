@@ -4,15 +4,7 @@
 # app-FSLBET
 Brain Extraction via FSL's BET command on DWI volume
 
-Write the following here...
-
-1) What the App does, and how it does it at the basic level.
-2) Briefly explain what 1) means for novice users in a language that 1st year psychology student can understand it.
-3) Briefly description of input / output files.
-
 This App runs pulls out b0 volume from an input dwi image (mean it), then use it to run bet to generate brain extracted DWI image. It then apply the mask on all dwi volumes and output it. 
-
-
 
 ### Authors
 - [Bradley Caron](bacaron@iu.edu)
