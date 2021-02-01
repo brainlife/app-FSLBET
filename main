@@ -7,7 +7,34 @@ set -x
 export input=$(jq -r .input config.json)
 export fthresh=$(jq -r .fthreshold config.json)
 
-singularity exec -e docker://brainlife/fsl:5.0.9 bet $input masked.nii.gz -m -f $fthresh
+singularity exec -e docker://brainlife/fsl:6.0.4 bash -c "
+  bet $input masked.nii.gz -m -f $fthresh;
+  slicer masked.nii.gz -x 0.5 check.x.png 
+  slicer masked.nii.gz -y 0.5 check.y.png 
+"
+
+mkdir -p out
+cp masked.nii.gz out/t1.nii.gz
 
 mkdir -p mask
 cp masked_mask.nii.gz mask/mask.nii.gz
+
+cat << EOF > product.json
+{
+    "brainlife": [
+      {
+          "type": "image/png",
+          "name": "masked(x)",
+          "base64": "$(base64 -w 0 check.x.png)"
+      },
+      {
+          "type": "image/png",
+          "name": "masked(y)",
+          "base64": "$(base64 -w 0 check.y.png)"
+      }
+    ]
+}
+EOF
+#"output": { "meta": { "Space": "$space" }, "tags": [ "space-$space"] },
+
+echo "all done"
