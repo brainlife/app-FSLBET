@@ -1,8 +1,9 @@
 #!/bin/bash
-#PBS -l nodes=1:ppn=8,walltime=0:10:00
+#PBS -l nodes=1:ppn=8,walltime=0:15:00
 #PBS -N FSLBET
 
 set -x
+set -e
 
 export input=$(jq -r .input config.json)
 export fthresh=$(jq -r .fthreshold config.json)
@@ -11,10 +12,12 @@ singularity exec -e docker://brainlife/fsl:6.0.4 bash -c "
   bet $input masked.nii.gz -m -f $fthresh;
   slicer masked.nii.gz -x 0.5 check.x.png 
   slicer masked.nii.gz -y 0.5 check.y.png 
+  slicer masked.nii.gz -z 0.5 check.z.png 
 "
 
-mkdir -p out
-cp masked.nii.gz out/($basename $input)
+#copy the input files as output (for func and dwi.. where we have things other than nii.gz)
+rsync -av $(dirname $input)/ out
+cp -f masked.nii.gz out/$(basename $input)
 
 mkdir -p mask
 cp masked_mask.nii.gz mask/mask.nii.gz
@@ -31,6 +34,11 @@ cat << EOF > product.json
           "type": "image/png",
           "name": "masked(y)",
           "base64": "$(base64 -w 0 check.y.png)"
+      },
+      {
+          "type": "image/png",
+          "name": "masked(y)",
+          "base64": "$(base64 -w 0 check.x.png)"
       }
     ]
 }
