@@ -14,7 +14,7 @@ singularity exec -e docker://brainlife/fsl:6.0.4 bash -c "
 "
 
 mkdir -p out
-cp masked.nii.gz out/t1.nii.gz
+cp masked.nii.gz out/($basename $input)
 
 mkdir -p mask
 cp masked_mask.nii.gz mask/mask.nii.gz
