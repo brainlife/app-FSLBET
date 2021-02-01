@@ -8,14 +8,13 @@ set -e
 export input=$(jq -r .input config.json)
 export fthresh=$(jq -r .fthreshold config.json)
 
-singularity exec -e docker://brainlife/fsl:6.0.4 bash -c "
-  bet $input masked.nii.gz -m -f $fthresh;
-
-#  (datatype validator does this)
-#  slicer masked.nii.gz -x 0.5 check.x.png 
-#  slicer masked.nii.gz -y 0.5 check.y.png 
-#  slicer masked.nii.gz -z 0.5 check.z.png 
-"
+if [ "$(basename $input)" == "bold.nii.gz" ]; then
+  #for func/task
+  singularity exec -e docker://brainlife/fsl:6.0.4 bet $input masked.nii.gz -F -m -f $fthresh
+else
+  #for t1, t2, and dwi
+  singularity exec -e docker://brainlife/fsl:6.0.4 bet $input masked.nii.gz -m -f $fthresh
+fi
 
 #copy the input files as output (for func and dwi.. where we have things other than nii.gz)
 rsync -av $(dirname $input)/ out
