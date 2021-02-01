@@ -17,7 +17,8 @@ singularity exec -e docker://brainlife/fsl:6.0.4 bash -c "
 
 #copy the input files as output (for func and dwi.. where we have things other than nii.gz)
 rsync -av $(dirname $input)/ out
-cp -f masked.nii.gz out/$(basename $input)
+chmod +w out/$(basename $input)
+cp masked.nii.gz out/$(basename $input)
 
 mkdir -p mask
 cp masked_mask.nii.gz mask/mask.nii.gz
