@@ -10,9 +10,11 @@ export fthresh=$(jq -r .fthreshold config.json)
 
 singularity exec -e docker://brainlife/fsl:6.0.4 bash -c "
   bet $input masked.nii.gz -m -f $fthresh;
-  slicer masked.nii.gz -x 0.5 check.x.png 
-  slicer masked.nii.gz -y 0.5 check.y.png 
-  slicer masked.nii.gz -z 0.5 check.z.png 
+
+#  (datatype validator does this)
+#  slicer masked.nii.gz -x 0.5 check.x.png 
+#  slicer masked.nii.gz -y 0.5 check.y.png 
+#  slicer masked.nii.gz -z 0.5 check.z.png 
 "
 
 #copy the input files as output (for func and dwi.. where we have things other than nii.gz)
@@ -23,27 +25,28 @@ cp masked.nii.gz out/$(basename $input)
 mkdir -p mask
 cp masked_mask.nii.gz mask/mask.nii.gz
 
-cat << EOF > product.json
-{
-    "brainlife": [
-      {
-          "type": "image/png",
-          "name": "masked(x)",
-          "base64": "$(base64 -w 0 check.x.png)"
-      },
-      {
-          "type": "image/png",
-          "name": "masked(y)",
-          "base64": "$(base64 -w 0 check.y.png)"
-      },
-      {
-          "type": "image/png",
-          "name": "masked(y)",
-          "base64": "$(base64 -w 0 check.x.png)"
-      }
-    ]
-}
-EOF
+#cat << EOF > product.json
+#{
+#    "brainlife": []
+#}
+#EOF
+
 #"output": { "meta": { "Space": "$space" }, "tags": [ "space-$space"] },
+#      {
+#          "type": "image/png",
+#          "name": "masked(x)",
+#          "base64": "$(base64 -w 0 check.x.png)"
+#      },
+#      {
+#          "type": "image/png",
+#          "name": "masked(y)",
+#          "base64": "$(base64 -w 0 check.y.png)"
+#      },
+#      {
+#          "type": "image/png",
+#          "name": "masked(y)",
+#          "base64": "$(base64 -w 0 check.x.png)"
+#      }
 
 echo "all done"
+
