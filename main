@@ -24,11 +24,12 @@ cp masked.nii.gz out/$(basename $input)
 mkdir -p mask
 cp masked_mask.nii.gz mask/mask.nii.gz
 
-#cat << EOF > product.json
-#{
-#    "brainlife": []
-#}
-#EOF
+cat << EOF > product.json
+{
+    "meta": $(jq "._inputs[0].meta" config.json),
+    "brainlife": []
+}
+EOF
 
 #"output": { "meta": { "Space": "$space" }, "tags": [ "space-$space"] },
 #      {
