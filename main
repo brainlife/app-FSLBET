@@ -1,6 +1,8 @@
 #!/bin/bash
-#PBS -l nodes=1:ppn=8,walltime=0:15:00
-#PBS -N FSLBET
+#SBATCH --job-name="FSLBET"
+#SBATCH --walltime=00:15:00
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=4G
 
 set -x
 set -e
