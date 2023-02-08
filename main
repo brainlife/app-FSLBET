@@ -10,10 +10,10 @@ export fthresh=$(jq -r .fthreshold config.json)
 
 if [ "$(basename $input)" == "bold.nii.gz" ]; then
   #for func/task
-  singularity exec -e docker://brainlife/fsl:6.0.4 bet $input masked.nii.gz -F -m -f $fthresh
+  singularity exec -e docker://brainlife/fsl:6.0.4-patched2 bet $input masked.nii.gz -F -m -f $fthresh
 else
   #for t1, t2, and dwi
-  singularity exec -e docker://brainlife/fsl:6.0.4 bet $input masked.nii.gz -R -m -f $fthresh
+  singularity exec -e docker://brainlife/fsl:6.0.4-patched2 bet $input masked.nii.gz -R -m -f $fthresh
 fi
 
 #copy the input files as output (for func and dwi.. where we have things other than nii.gz)
