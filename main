@@ -18,7 +18,7 @@ mask=`jq -r '.mask' config.json`
 # fi
 
 [ ! -d output ] && mkdir output
-[ ! -f output/${type}.nii.gz ] && singularity exec -e docker::/brainlife/fsl:6.0.1 fslmaths $input -mas ${mask} ./${type}.nii.gz
+[ ! -f output/${type}.nii.gz ] && singularity exec -e docker://brainlife/fsl:6.0.1 fslmaths $input -mas ${mask} ./${type}.nii.gz
 
 #copy the input files as output (for func and dwi.. where we have things other than nii.gz)
 rsync -av $(dirname $input)/ output
