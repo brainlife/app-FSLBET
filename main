@@ -6,23 +6,24 @@ set -x
 set -e
 
 export input=$(jq -r .input config.json)
-export fthresh=$(jq -r .fthreshold config.json)
+type=`jq -r '.type' config.json`
+mask=`jq -r '.mask' config.json`
 
-if [ "$(basename $input)" == "bold.nii.gz" ]; then
-  #for func/task
-  singularity exec -e docker://brainlife/fsl:6.0.1 bet $input masked.nii.gz -F -m -f $fthresh
-else
-  #for t1, t2, dwi, and flair
-  singularity exec -e docker://brainlife/fsl:6.0.1 bet $input masked.nii.gz -R -m -f $fthresh
-fi
+# if [ "$(basename $input)" == "bold.nii.gz" ]; then
+#   #for func/task
+#   singularity exec -e docker://brainlife/fsl:6.0.1 bet $input masked.nii.gz -F -m -f $fthresh
+# else
+#   #for t1, t2, dwi, and flair
+#   singularity exec -e docker://brainlife/fsl:6.0.1 bet $input masked.nii.gz -R -m -f $fthresh
+# fi
+
+[ ! -d output ] && mkdir output
+[ ! -f output/${type}.nii.gz ] && singularity exec -e docker::/brainlife/fsl:6.0.1 fslmaths $input -mas ${mask} ./${type}.nii.gz
 
 #copy the input files as output (for func and dwi.. where we have things other than nii.gz)
-rsync -av $(dirname $input)/ out
-chmod +w out/$(basename $input)
-cp masked.nii.gz out/$(basename $input)
-
-mkdir -p mask
-cp masked_mask.nii.gz mask/mask.nii.gz
+rsync -av $(dirname $input)/ output
+chmod +w output/$(basename $input)
+cp ${type}.nii.gz output/$(basename $input)
 
 #cat << EOF > product.json
 #{
