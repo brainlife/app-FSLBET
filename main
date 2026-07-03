@@ -7,6 +7,10 @@ set -e
 
 export input=$(jq -r .input config.json)
 export fthresh=$(jq -r .fthreshold config.json)
+mkdir -p ./work
+copy_input=./work/$( basename ${input} )
+cp ${input} ${copy_input}
+input=${copy_input}
 
 if [ "$(basename $input)" == "bold.nii.gz" ]; then
   #for func/task
