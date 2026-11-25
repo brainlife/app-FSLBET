@@ -10,9 +10,9 @@
   <a href="https://github.com/brainlife/app-FSLBET/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="MIT license"></a>
 </p>
 
-> 📍 **This branch, `t2`, is the brainlife.io App test** ([doi:10.25663/brainlife.app.790](https://doi.org/10.25663/brainlife.app.790)). The other Apps in this repository are listed under **Versions on brainlife.io** below.
+> **This branch, `t2`, is the brainlife.io App test** ([doi:10.25663/brainlife.app.790](https://doi.org/10.25663/brainlife.app.790)). The other Apps in this repository are listed under **Versions on brainlife.io** below.
 
-## 🧠 At a glance
+## At a glance
 
 <!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
 
@@ -22,12 +22,12 @@ Test registration of an old branch of app-FSLBET. The t2 branch's main runs FSL 
 
 | | |
 |---|---|
-| ⚙️ **Resources** | 8 CPUs · 0.17 h walltime |
-| 🔗 **Run it** | [doi.org/10.25663/brainlife.app.790](https://doi.org/10.25663/brainlife.app.790) |
+| **Resources** | 8 CPUs · 0.17 h walltime |
+| **Run it** | [doi.org/10.25663/brainlife.app.790](https://doi.org/10.25663/brainlife.app.790) |
 
 <!-- brainlife-app:end -->
 
-## 🏷️ Versions on brainlife.io
+## Versions on brainlife.io
 
 Each App on brainlife.io is built from a branch of this repository. Pick the App that matches your datatype.
 
@@ -48,13 +48,13 @@ Each App on brainlife.io is built from a branch of this repository. Pick the App
 
 The two test registrations do not match their code (their registered inputs differ from the config keys `main` reads); use the BET or apply-mask Apps above instead.
 
-## 🚀 Running the App
+## Running the App
 
-### ☁️ On brainlife.io
+### On brainlife.io
 
 Open the App for your datatype from the table above (for example [doi.org/10.25663/bl.app.2](https://doi.org/10.25663/bl.app.2) for a T1-weighted image), choose the dataset from your project, set the fractional intensity threshold and press **Execute**. The BET Apps archive two datasets to your project: the input datatype with its image replaced by the brain-extracted one (tagged `brain_extracted`), and a `neuro/mask` brain mask. The apply-mask Apps take an existing `neuro/mask` instead of estimating one, and output only the brain-extracted datatype.
 
-### 💻 Locally
+### Locally
 
 You need [Singularity/Apptainer](https://apptainer.org/) and [`jq`](https://jqlang.github.io/jq/). The `brainlife/fsl` containers are pulled from Docker Hub on first use.
 
@@ -99,7 +99,7 @@ You need [Singularity/Apptainer](https://apptainer.org/) and [`jq`](https://jqla
    ./main
    ```
 
-## 📦 Outputs
+## Outputs
 
 BET on T1, T2, FLAIR or BOLD (`2.0`):
 
@@ -113,13 +113,13 @@ BET on DWI (`dwi`): `dwi/dwi.nii.gz` (every DWI volume multiplied by the mask), 
 
 Apply mask (`apply-mask-v1.0`): `output/`, a copy of the input directory with the image multiplied by the mask (`fslmaths -mas`).
 
-## 🩺 Troubleshooting
+## Troubleshooting
 
 - **Too much or too little brain removed**: inspect the mask and adjust `fthreshold` (0 to 1; smaller values give larger brain outline estimates). For DWI, `gthreshold` (−1 to 1) shifts the outline: positive values give a larger outline at the bottom and a smaller one at the top.
 - **`mask missing`** (DWI): BET did not produce a mask. Check the log for `bet` errors and that the DWI contains b=0 volumes, which are averaged to estimate the mask.
 - **Apply mask**: the mask must be in the same space and voxel grid as the image.
 
-## 📚 Citing
+## Citing
 
 > [!TIP]
 > If you use this App in your work, please cite the App, the software it builds on and brainlife.io (below). GitHub's **Cite this repository** button gives the App citation in APA and BibTeX.
@@ -129,7 +129,7 @@ Apply mask (`apply-mask-v1.0`): `output/`, a copy of the input directory with th
 - Hayashi S, Caron BA, Heinsfeld AS, et al. brainlife.io: a decentralized and open-source cloud platform to support neuroscience research. *Nature Methods* 21:809–813 (2024). [doi:10.1038/s41592-024-02237-2](https://doi.org/10.1038/s41592-024-02237-2)
 - Avesani P, McPherson B, Hayashi S, et al. The open diffusion data derivatives, brain data upcycling via integrated publishing of derivatives and reproducible open cloud services. *Scientific Data* 6:69 (2019). [doi:10.1038/s41597-019-0073-y](https://doi.org/10.1038/s41597-019-0073-y)
 
-## 👥 Authors
+## Authors
 
 - Brad Caron
 - Lindsey Kitchell
@@ -137,7 +137,7 @@ Apply mask (`apply-mask-v1.0`): `output/`, a copy of the input directory with th
 
 **Contributors:** Soichi Hayashi, Anibal Sólon
 
-## 💰 Funding
+## Funding
 
 [![Wellcome-226486/Z/22/Z](https://img.shields.io/badge/Wellcome-226486%2FZ%2F22%2FZ-purple.svg)](https://wellcome.org/)
 [![NIH-NINDS-U24NS140384](https://img.shields.io/badge/NIH_NINDS-U24NS140384-green.svg)](https://reporter.nih.gov/project-details/11261037)
@@ -156,6 +156,6 @@ Apply mask (`apply-mask-v1.0`): `output/`, a copy of the input directory with th
 
 <sub>brainlife.io is publicly funded, and acknowledging that support helps keep it running. This App was developed with support from Wellcome, the U.S. National Institutes of Health (including the BRAIN Initiative BRAIN CONNECTS program: The Axonal Projectome EXchange, U24NS140384, and the Center for Mesoscale Connectomics, UM1NS132207) and the U.S. National Science Foundation.</sub>
 
-## ⚖️ License
+## License
 
 [MIT](https://github.com/brainlife/app-FSLBET/blob/master/LICENSE). FSL itself is distributed under its own [license](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Licence).
