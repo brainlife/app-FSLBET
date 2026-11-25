@@ -10,7 +10,7 @@
   <a href="https://github.com/brainlife/app-FSLBET/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="MIT license"></a>
 </p>
 
-> 📍 **This branch, `2.0`, runs 4 brainlife.io Apps** that share the same code:
+> **This branch, `2.0`, runs 4 brainlife.io Apps** that share the same code:
 >
 > - FSL Brain Extraction (BET) on FLAIR ([doi:10.25663/brainlife.app.728](https://doi.org/10.25663/brainlife.app.728))
 > - FSL Brain Extraction (BET) on fMRI ([doi:10.25663/brainlife.app.184](https://doi.org/10.25663/brainlife.app.184))
@@ -19,11 +19,11 @@
 >
 > The other Apps in this repository are listed under **Versions on brainlife.io** below.
 
-## 🧠 At a glance
+## At a glance
 
 <!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
 
-### 🧩 FSL Brain Extraction (BET) on FLAIR
+### FSL Brain Extraction (BET) on FLAIR
 
 > **Removes non-brain tissue from a FLAIR image with FSL BET (robust centre estimation) and outputs the skull-stripped image and its binary brain mask.**
 
@@ -31,19 +31,19 @@ Runs FSL bet with -R -m on the FLAIR image using the chosen fractional intensity
 
 | | |
 |---|---|
-| 📥 **Inputs** | `neuro/anat/flair` |
-| 📤 **Outputs** | `neuro/anat/flair` · `neuro/mask` |
-| 🐳 **Container** | `brainlife/fsl:6.0.1` |
-| ⚙️ **Resources** | 2 CPUs · 0.5 h walltime |
-| 🔗 **Run it** | [doi.org/10.25663/brainlife.app.728](https://doi.org/10.25663/brainlife.app.728) |
+| **Inputs** | `neuro/anat/flair` |
+| **Outputs** | `neuro/anat/flair` · `neuro/mask` |
+| **Container** | `brainlife/fsl:6.0.1` |
+| **Resources** | 2 CPUs · 0.5 h walltime |
+| **Run it** | [doi.org/10.25663/brainlife.app.728](https://doi.org/10.25663/brainlife.app.728) |
 
-#### 📥 Inputs
+#### Inputs
 
 | Input | Datatype | Required | Description |
 |---|---|---|---|
 | `0` | `neuro/anat/flair` | yes | FLAIR image to skull-strip (NIfTI). |
 
-#### 📤 Outputs
+#### Outputs
 
 | Output | Datatype | Description |
 |---|---|---|
@@ -51,7 +51,7 @@ Runs FSL bet with -R -m on the FLAIR image using the chosen fractional intensity
 | `mask` | `neuro/mask` | Binary brain mask (mask.nii.gz) produced by BET from the FLAIR image. |
 
 <details>
-<summary><b>⚙️ Parameters</b> (1)</summary>
+<summary><b>Parameters</b> (1)</summary>
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
@@ -59,7 +59,7 @@ Runs FSL bet with -R -m on the FLAIR image using the chosen fractional intensity
 
 </details>
 
-### 🧩 FSL Brain Extraction (BET) on fMRI
+### FSL Brain Extraction (BET) on fMRI
 
 > **Removes non-brain tissue from a 4D BOLD fMRI series with FSL BET (-F, applied to every volume) and outputs the masked bold.nii.gz and a brain mask.**
 
@@ -67,19 +67,19 @@ Runs FSL bet with -F -m on bold.nii.gz so the brain mask is estimated from the f
 
 | | |
 |---|---|
-| 📥 **Inputs** | `neuro/func/task` |
-| 📤 **Outputs** | `neuro/func/task` · `neuro/mask` |
-| 🐳 **Container** | `brainlife/fsl:6.0.1` |
-| ⚙️ **Resources** | 2 CPUs · 0.5 h walltime |
-| 🔗 **Run it** | [doi.org/10.25663/brainlife.app.184](https://doi.org/10.25663/brainlife.app.184) |
+| **Inputs** | `neuro/func/task` |
+| **Outputs** | `neuro/func/task` · `neuro/mask` |
+| **Container** | `brainlife/fsl:6.0.1` |
+| **Resources** | 2 CPUs · 0.5 h walltime |
+| **Run it** | [doi.org/10.25663/brainlife.app.184](https://doi.org/10.25663/brainlife.app.184) |
 
-#### 📥 Inputs
+#### Inputs
 
 | Input | Datatype | Required | Description |
 |---|---|---|---|
 | `0` | `neuro/func/task` | yes | 4D BOLD fMRI task datatype; the bold.nii.gz image is brain-extracted. |
 
-#### 📤 Outputs
+#### Outputs
 
 | Output | Datatype | Description |
 |---|---|---|
@@ -87,7 +87,7 @@ Runs FSL bet with -F -m on bold.nii.gz so the brain mask is estimated from the f
 | `mask` | `neuro/mask` | Binary brain mask (mask.nii.gz) produced by BET from the BOLD series. |
 
 <details>
-<summary><b>⚙️ Parameters</b> (1)</summary>
+<summary><b>Parameters</b> (1)</summary>
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
@@ -95,7 +95,7 @@ Runs FSL bet with -F -m on bold.nii.gz so the brain mask is estimated from the f
 
 </details>
 
-### 🧩 FSL Brain Extraction (BET) on T2
+### FSL Brain Extraction (BET) on T2
 
 > **Removes non-brain tissue from a T2-weighted image with FSL BET (robust centre estimation) and outputs the skull-stripped image and its binary brain mask.**
 
@@ -103,19 +103,19 @@ Runs FSL bet with -R -m on the T2-weighted image using the chosen fractional int
 
 | | |
 |---|---|
-| 📥 **Inputs** | `neuro/anat/t2w` |
-| 📤 **Outputs** | `neuro/anat/t2w` · `neuro/mask` |
-| 🐳 **Container** | `brainlife/fsl:6.0.1` |
-| ⚙️ **Resources** | 2 CPUs · 0.5 h walltime |
-| 🔗 **Run it** | [doi.org/10.25663/brainlife.app.156](https://doi.org/10.25663/brainlife.app.156) |
+| **Inputs** | `neuro/anat/t2w` |
+| **Outputs** | `neuro/anat/t2w` · `neuro/mask` |
+| **Container** | `brainlife/fsl:6.0.1` |
+| **Resources** | 2 CPUs · 0.5 h walltime |
+| **Run it** | [doi.org/10.25663/brainlife.app.156](https://doi.org/10.25663/brainlife.app.156) |
 
-#### 📥 Inputs
+#### Inputs
 
 | Input | Datatype | Required | Description |
 |---|---|---|---|
 | `0` | `neuro/anat/t2w` | yes | T2-weighted image to skull-strip (NIfTI). |
 
-#### 📤 Outputs
+#### Outputs
 
 | Output | Datatype | Description |
 |---|---|---|
@@ -123,7 +123,7 @@ Runs FSL bet with -R -m on the T2-weighted image using the chosen fractional int
 | `mask` | `neuro/mask` | The brainmask of the T2w image |
 
 <details>
-<summary><b>⚙️ Parameters</b> (1)</summary>
+<summary><b>Parameters</b> (1)</summary>
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
@@ -131,7 +131,7 @@ Runs FSL bet with -R -m on the T2-weighted image using the chosen fractional int
 
 </details>
 
-### 🧩 FSL Brain Extraction (BET) on T1
+### FSL Brain Extraction (BET) on T1
 
 > **Removes non-brain tissue from a T1-weighted image with FSL BET (robust centre estimation) and outputs the skull-stripped image and its binary brain mask.**
 
@@ -139,19 +139,19 @@ Runs FSL bet with -R -m on the T1-weighted image using the chosen fractional int
 
 | | |
 |---|---|
-| 📥 **Inputs** | `neuro/anat/t1w` |
-| 📤 **Outputs** | `neuro/anat/t1w` · `neuro/mask` |
-| 🐳 **Container** | `brainlife/fsl:6.0.1` |
-| ⚙️ **Resources** | 2 CPUs · 0.5 h walltime |
-| 🔗 **Run it** | [doi.org/10.25663/bl.app.2](https://doi.org/10.25663/bl.app.2) |
+| **Inputs** | `neuro/anat/t1w` |
+| **Outputs** | `neuro/anat/t1w` · `neuro/mask` |
+| **Container** | `brainlife/fsl:6.0.1` |
+| **Resources** | 2 CPUs · 0.5 h walltime |
+| **Run it** | [doi.org/10.25663/bl.app.2](https://doi.org/10.25663/bl.app.2) |
 
-#### 📥 Inputs
+#### Inputs
 
 | Input | Datatype | Required | Description |
 |---|---|---|---|
 | `0` | `neuro/anat/t1w` | yes | T1-weighted image to skull-strip (NIfTI). |
 
-#### 📤 Outputs
+#### Outputs
 
 | Output | Datatype | Description |
 |---|---|---|
@@ -159,7 +159,7 @@ Runs FSL bet with -R -m on the T1-weighted image using the chosen fractional int
 | `mask` | `neuro/mask` | Binary brain mask (mask.nii.gz) produced by BET from the T1w image. |
 
 <details>
-<summary><b>⚙️ Parameters</b> (1)</summary>
+<summary><b>Parameters</b> (1)</summary>
 
 | Parameter | Type | Default | Description |
 |---|---|---|---|
@@ -169,7 +169,7 @@ Runs FSL bet with -R -m on the T1-weighted image using the chosen fractional int
 
 <!-- brainlife-app:end -->
 
-## 🏷️ Versions on brainlife.io
+## Versions on brainlife.io
 
 Each App on brainlife.io is built from a branch of this repository. Pick the App that matches your datatype.
 
@@ -190,13 +190,13 @@ Each App on brainlife.io is built from a branch of this repository. Pick the App
 
 The two test registrations do not match their code (their registered inputs differ from the config keys `main` reads); use the BET or apply-mask Apps above instead.
 
-## 🚀 Running the App
+## Running the App
 
-### ☁️ On brainlife.io
+### On brainlife.io
 
 Open the App for your datatype from the table above (for example [doi.org/10.25663/bl.app.2](https://doi.org/10.25663/bl.app.2) for a T1-weighted image), choose the dataset from your project, set the fractional intensity threshold and press **Execute**. The BET Apps archive two datasets to your project: the input datatype with its image replaced by the brain-extracted one (tagged `brain_extracted`), and a `neuro/mask` brain mask. The apply-mask Apps take an existing `neuro/mask` instead of estimating one, and output only the brain-extracted datatype.
 
-### 💻 Locally
+### Locally
 
 You need [Singularity/Apptainer](https://apptainer.org/) and [`jq`](https://jqlang.github.io/jq/). The `brainlife/fsl` containers are pulled from Docker Hub on first use.
 
@@ -241,7 +241,7 @@ You need [Singularity/Apptainer](https://apptainer.org/) and [`jq`](https://jqla
    ./main
    ```
 
-## 📦 Outputs
+## Outputs
 
 BET on T1, T2, FLAIR or BOLD (`2.0`):
 
@@ -255,13 +255,13 @@ BET on DWI (`dwi`): `dwi/dwi.nii.gz` (every DWI volume multiplied by the mask), 
 
 Apply mask (`apply-mask-v1.0`): `output/`, a copy of the input directory with the image multiplied by the mask (`fslmaths -mas`).
 
-## 🩺 Troubleshooting
+## Troubleshooting
 
 - **Too much or too little brain removed**: inspect the mask and adjust `fthreshold` (0 to 1; smaller values give larger brain outline estimates). For DWI, `gthreshold` (−1 to 1) shifts the outline: positive values give a larger outline at the bottom and a smaller one at the top.
 - **`mask missing`** (DWI): BET did not produce a mask. Check the log for `bet` errors and that the DWI contains b=0 volumes, which are averaged to estimate the mask.
 - **Apply mask**: the mask must be in the same space and voxel grid as the image.
 
-## 📚 Citing
+## Citing
 
 > [!TIP]
 > If you use this App in your work, please cite the App, the software it builds on and brainlife.io (below). GitHub's **Cite this repository** button gives the App citation in APA and BibTeX.
@@ -274,7 +274,7 @@ Apply mask (`apply-mask-v1.0`): `output/`, a copy of the input directory with th
 - Hayashi S, Caron BA, Heinsfeld AS, et al. brainlife.io: a decentralized and open-source cloud platform to support neuroscience research. *Nature Methods* 21:809–813 (2024). [doi:10.1038/s41592-024-02237-2](https://doi.org/10.1038/s41592-024-02237-2)
 - Avesani P, McPherson B, Hayashi S, et al. The open diffusion data derivatives, brain data upcycling via integrated publishing of derivatives and reproducible open cloud services. *Scientific Data* 6:69 (2019). [doi:10.1038/s41597-019-0073-y](https://doi.org/10.1038/s41597-019-0073-y)
 
-## 👥 Authors
+## Authors
 
 - Brad Caron
 - Lindsey Kitchell
@@ -282,7 +282,7 @@ Apply mask (`apply-mask-v1.0`): `output/`, a copy of the input directory with th
 
 **Contributors:** Soichi Hayashi, Anibal Sólon
 
-## 💰 Funding
+## Funding
 
 [![Wellcome-226486/Z/22/Z](https://img.shields.io/badge/Wellcome-226486%2FZ%2F22%2FZ-purple.svg)](https://wellcome.org/)
 [![NIH-NINDS-U24NS140384](https://img.shields.io/badge/NIH_NINDS-U24NS140384-green.svg)](https://reporter.nih.gov/project-details/11261037)
@@ -301,6 +301,6 @@ Apply mask (`apply-mask-v1.0`): `output/`, a copy of the input directory with th
 
 <sub>brainlife.io is publicly funded, and acknowledging that support helps keep it running. This App was developed with support from Wellcome, the U.S. National Institutes of Health (including the BRAIN Initiative BRAIN CONNECTS program: The Axonal Projectome EXchange, U24NS140384, and the Center for Mesoscale Connectomics, UM1NS132207) and the U.S. National Science Foundation.</sub>
 
-## ⚖️ License
+## License
 
 [MIT](https://github.com/brainlife/app-FSLBET/blob/master/LICENSE). FSL itself is distributed under its own [license](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Licence).
